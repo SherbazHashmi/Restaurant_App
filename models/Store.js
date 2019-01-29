@@ -17,6 +17,7 @@ const storeSchema = new mongoose.Schema({
     trim: true,
   },
   tags: [String],
+  price: Number,
 });
 
 
