@@ -63,11 +63,39 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function autocomplete(input, latInput, lngInput) {
+  if (!input) return; // skips the function from running if there is no input on page.
+
+  var dropdown = new google.maps.places.Autocomplete(input);
+  dropdown.addListener('place_changed', function () {
+    var place = dropdown.getPlace();
+    latInput.value = place.geometry.location.lat();
+    lngInput.value = place.geometry.location.lng();
+  });
+
+  // if someone hits enter on the address field, don't submit the form
+  input.on('keydown', function (e) {
+    if (e.keyCode === 13) e.preventDefault();
+  });
+}
+
+exports.default = autocomplete;
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -97,21 +125,29 @@ exports.$ = $;
 exports.$$ = $$;
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: Error\n    at /Users/sherbaz/Development/Learn/NodeJS/code/node_modules/webpack/lib/NormalModule.js:141:35\n    at /Users/sherbaz/Development/Learn/NodeJS/code/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /Users/sherbaz/Development/Learn/NodeJS/code/node_modules/loader-runner/lib/LoaderRunner.js:172:11\n    at loadLoader (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/loader-runner/lib/loadLoader.js:32:11)\n    at iteratePitchingLoaders (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Users/sherbaz/Development/Learn/NodeJS/code/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Users/sherbaz/Development/Learn/NodeJS/code/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at runLoaders (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/loader-runner/lib/LoaderRunner.js:365:2)\n    at NormalModule.doBuild (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/webpack/lib/NormalModule.js:129:2)\n    at NormalModule.build (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/webpack/lib/NormalModule.js:180:15)\n    at Compilation.buildModule (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/webpack/lib/Compilation.js:142:10)\n    at moduleFactory.create (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/webpack/lib/Compilation.js:424:9)\n    at /Users/sherbaz/Development/Learn/NodeJS/code/node_modules/webpack/lib/NormalModuleFactory.js:242:4\n    at /Users/sherbaz/Development/Learn/NodeJS/code/node_modules/webpack/lib/NormalModuleFactory.js:93:13\n    at /Users/sherbaz/Development/Learn/NodeJS/code/node_modules/tapable/lib/Tapable.js:268:11\n    at NormalModuleFactory.params.normalModuleFactory.plugin (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/webpack/lib/CompatibilityPlugin.js:52:5)\n    at NormalModuleFactory.applyPluginsAsyncWaterfall (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/tapable/lib/Tapable.js:272:13)\n    at onDoneResolving (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/webpack/lib/NormalModuleFactory.js:68:11)\n    at onDoneResolving (/Users/sherbaz/Development/Learn/NodeJS/code/node_modules/webpack/lib/NormalModuleFactory.js:189:6)\n    at _combinedTickCallback (internal/process/next_tick.js:67:7)\n    at process._tickCallback (internal/process/next_tick.js:98:9)");
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(1);
+__webpack_require__(2);
 
-var _bling = __webpack_require__(0);
+var _bling = __webpack_require__(1);
+
+var _autocomplete = __webpack_require__(0);
+
+var _autocomplete2 = _interopRequireDefault(_autocomplete);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _autocomplete2.default)((0, _bling.$)('#address'), (0, _bling.$)('#lat'), (0, _bling.$)('#lng'));
 
 /***/ })
 /******/ ]);

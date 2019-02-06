@@ -1,0 +1,10 @@
+extends layout
+include mixins/_storeCard
+
+block content
+  .inner
+    form(action="/remove" method= "POST")  
+      ul.stores
+      each store in stores
+        li #{store.name}
+    input(type="submit" value = "done" class="button")
